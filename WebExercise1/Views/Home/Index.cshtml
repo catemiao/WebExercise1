@@ -1,0 +1,33 @@
+﻿@model string
+@using WebExercise1
+
+@inject ISingleton singleton
+@inject IScoped scoped
+@inject ITransient transient
+@inject HomeService homeService
+
+<html>
+    <head>
+        <style>
+            tbody, td, tfoot, th, thead, tr {
+                border-style: solid;
+                border-width: 1px;
+                border-color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tbody>
+            <tr><th>DI</th><th>Layer</th><th>Count</th><th>HashValue</th></tr>
+            <tr><td rowspan="2">Singleton</td><td>Controller</td><td>@singleton.Id</td><td>@singleton.GetHashCode()</td></tr>
+            <tr><td>Service</td><td>@homeService._ISingleton.Id</td><td>@homeService._ISingleton.GetHashCode()</td></tr>
+            <tr><td rowspan="2">Scoped</td><td>Controller</td><td>@scoped.Id</td><td>@scoped.GetHashCode()</td></tr>
+            <tr><td>Service</td><td>@homeService._IScoped.Id</td><td>@homeService._IScoped.GetHashCode()</td></tr>
+            <tr><td rowspan="2">Transient</td><td>Controller</td><td>@transient.Id</td><td>@transient.GetHashCode()</td></tr>
+            <tr><td>Service</td><td>@homeService._ITransient.Id</td><td>@homeService._ITransient.GetHashCode()</td></tr>
+            </tbody>
+        </table>
+    </body>
+
+</html>
